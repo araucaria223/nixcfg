@@ -23,23 +23,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    grub2-themes = {
-      url = "github:vinceliuice/grub2-themes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-colors.url = "github:misterio77/nix-colors";
 
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "git+https://github.com/andresilva/Hyprland?ref=nix-build-improvements&submodules=1";
+    #hyprland.url = "git+https://github.com/andresilva/Hyprland?ref=nix-build-improvements&submodules=1";
     #hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "git+https://github.com/hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    #  hyprland-plugins = {
+    #    url = "git+https://github.com/hyprwm/hyprland-plugins";
+    #    inputs.hyprland.follows = "hyprland";
+    #  };
 
     ags = {
       url = "github:Aylur/ags";
@@ -78,7 +73,7 @@
 
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
-	    inputs.sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
           ];
         };
     };
