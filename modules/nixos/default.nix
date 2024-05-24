@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ./system/grub.nix
+    #./system/grub.nix
     ./system/systemd-boot.nix
     ./system/plymouth.nix
     ./system/impermanence.nix
@@ -24,7 +24,7 @@
   ];
 
   systemd-boot.enable = lib.mkDefault false;
-  grub.enable = lib.mkDefault false;
+  #grub.enable = lib.mkDefault false;
 
   plymouth.enable = lib.mkDefault true;
   impermanence.enable = lib.mkDefault true;
