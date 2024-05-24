@@ -75,6 +75,7 @@
 
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
+	    inputs.nixos-hardware.nixosModules.apple-macbook-air-6
             inputs.sops-nix.nixosModules.sops
           ];
         };
