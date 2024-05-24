@@ -96,7 +96,7 @@
 
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
-	    inputs.nixos-hardware.nixosModules.framework-12th-gen-intel;
+	    inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
             inputs.sops-nix.nixosModules.sops
           ];
         };
