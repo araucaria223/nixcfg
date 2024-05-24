@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./zsh.nix
     ./starship.nix
