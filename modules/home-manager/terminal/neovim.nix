@@ -27,6 +27,11 @@ in {
 
       colorschemes.rose-pine.enable = true;
 
+      clipboard = {
+	register = "unnamedplus";
+	providers.wl-copy.enable = true;
+      };
+
       opts = {
         number = true;
         shiftwidth = 2;
