@@ -22,8 +22,6 @@
   i18n.defaultLocale = "en_GB.UTF-8";
 
   systemd-boot.enable = true;
-  # battery usage optimisation
-  boot.kernelParams = ["acpi_osi="];
   hardware.cpu.intel.updateMicrocode = true;
 
   colorScheme = inputs.nix-colors.colorSchemes.${settings.colorScheme};
