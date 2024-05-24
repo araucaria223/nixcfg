@@ -13,6 +13,8 @@
       url = "github:nix-community/impermanence";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,6 +75,27 @@
 
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
+            inputs.sops-nix.nixosModules.sops
+          ];
+        };
+      lookfar =
+        nixpkgs.lib.nixosSystem
+        {
+          specialArgs = {
+            inherit inputs;
+            settings = import ./hosts/lookfar/settings.nix;
+          };
+
+          modules = [
+            inputs.disko.nixosModules.default
+            (import ./hosts/lookfar/disko.nix {device = "/dev/nvme0n1";})
+
+            ./hosts/lookfar/configuration.nix
+            ./modules/nixos
+
+            inputs.home-manager.nixosModules.default
+            inputs.impermanence.nixosModules.impermanence
+	    inputs.nixos-hardware.nixosModules.framework-12th-gen-intel;
             inputs.sops-nix.nixosModules.sops
           ];
         };

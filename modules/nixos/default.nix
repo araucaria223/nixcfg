@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    #./system/grub.nix
     ./system/systemd-boot.nix
     ./system/plymouth.nix
     ./system/impermanence.nix
@@ -23,9 +22,7 @@
     ./other/hyprlock.nix
   ];
 
-  systemd-boot.enable = lib.mkDefault false;
-  #grub.enable = lib.mkDefault false;
-
+  systemd-boot.enable = lib.mkDefault true; 
   plymouth.enable = lib.mkDefault true;
   impermanence.enable = lib.mkDefault true;
   homeManager.enable = lib.mkDefault true;

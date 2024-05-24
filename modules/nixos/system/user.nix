@@ -9,10 +9,6 @@
 in {
   options.mainUser = {
     enable = lib.mkEnableOption "Enable user module";
-
-    #userName = lib.mkOption {
-    #  description = "Username";
-    #};
   };
 
   config = lib.mkIf cfg.enable {
