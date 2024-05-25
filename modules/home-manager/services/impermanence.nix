@@ -22,10 +22,6 @@ in {
 	".config/sops/age"
         ".local/share/keyrings"
         ".local/share/direnv"
-        #{
-        #  directory = ".local/share/Steam";
-        #  method = "symlink";
-        #}
       ];
       allowOther = true;
     };

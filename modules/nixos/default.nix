@@ -20,6 +20,8 @@
     ./other/sddm/sddm.nix
     ./other/hyprland.nix
     ./other/hyprlock.nix
+    ./other/steam.nix
+    ./other/gaming.nix
   ];
 
   systemd-boot.enable = lib.mkDefault true; 
@@ -36,4 +38,7 @@
   sddm.enable = lib.mkDefault true;
   hyprland.enable = lib.mkDefault true;
   hyprlock.enable = lib.mkDefault true;
+
+  steam.enable = lib.mkDefault false;
+  gaming.enable = lib.mkDefault false;
 }

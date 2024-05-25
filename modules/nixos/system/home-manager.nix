@@ -30,9 +30,5 @@ in {
       };
     };
 
-    systemd.tmpfiles.rules = [
-      "d /persist/home/ 1777 root root -"
-      "d /persist/home/adzuki 0770 adzuki users -"
-    ];
   };
 }

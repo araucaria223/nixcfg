@@ -55,6 +55,12 @@ in {
       #];
     };
 
+    # set correct permissions for home impermanence
+    systemd.tmpfiles.rules = [
+      "d /persist/home/ 1777 root root -"
+      "d /persist/home/adzuki 0770 adzuki users -"
+    ];
+
     programs.fuse.userAllowOther = true;
   };
 }

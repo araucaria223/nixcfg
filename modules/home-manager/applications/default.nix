@@ -11,11 +11,12 @@
     ./pcmanfm.nix
     ./discord.nix
     ./vscode.nix
+    ./steam.nix
   ];
 
   # terminal emulators
-  alacritty.enable = true;
-  kitty.enable = true;
+  alacritty.enable = lib.mkDefault true;
+  kitty.enable = lib.mkDefault true;
 
   # file manager
   pcmanfm.enable = lib.mkDefault true;
@@ -34,4 +35,7 @@
 
   # ide
   vscode.enable = lib.mkDefault true;
+
+  # game launcher
+  steam.enable = lib.mkDefault false;
 }
