@@ -15,14 +15,6 @@ in {
       gamescopeSession.enable = true;
     };
 
-    # REQUIRES MANUAL IMPERATIVE INTERVENTION
-    # Run `protonup` to install ProtonGE
-    
-    environment.systemPackages = [pkgs.protonup];
-    
-    environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-      ”\${HOME}/.steam/root/compatibilitytools.d”;
-    };
+    programs.gamemode.enable = true;
   };
 }
