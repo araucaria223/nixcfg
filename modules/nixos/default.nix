@@ -21,7 +21,7 @@
     ./other/hyprland.nix
     ./other/hyprlock.nix
     ./other/steam.nix
-    ./other/gaming.nix
+    ./other/opengl.nix
   ];
 
   systemd-boot.enable = lib.mkDefault true; 
@@ -40,5 +40,5 @@
   hyprlock.enable = lib.mkDefault true;
 
   steam.enable = lib.mkDefault false;
-  gaming.enable = lib.mkDefault false;
+  opengl.enable = lib.mkDefault false;
 }
