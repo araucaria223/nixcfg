@@ -1,7 +1,11 @@
-{ config, lib, ... }: let
-  cfg = config.gaming;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.gaming;
+in {
   options.gaming = {
     enable = lib.mkEnableOption "Enables some game launchers";
   };
