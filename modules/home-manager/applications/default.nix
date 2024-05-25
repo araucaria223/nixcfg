@@ -14,6 +14,7 @@
     ./discord.nix
     ./vscode.nix
     ./steam.nix
+    ./gaming.nix
   ];
 
   # programs that don't need their own module
@@ -42,6 +43,7 @@
   discord.enable = lib.mkDefault true;
   # ide
   vscode.enable = lib.mkDefault true;
-  # game launcher
+  # game launchers
   steam.enable = lib.mkDefault false;
+  gaming.enable = lib.mkDefault false;
 }
