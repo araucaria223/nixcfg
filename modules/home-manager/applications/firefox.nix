@@ -116,7 +116,7 @@ in {
           {
             name = "NixOS User Wiki";
             tags = ["wiki" "nix" "unofficial"];
-            url = "https://nixos.wiki";
+            url = "https://wiki.nixos.org";
           }
         ];
 
