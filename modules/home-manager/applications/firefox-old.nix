@@ -25,7 +25,7 @@ in {
             {
               name = "NixOS Wiki";
               tags = ["wiki" "nix"];
-              url = "https://nixos.wiki";
+              url = "https://wiki.nixos.org";
             }
           ];
 
@@ -39,7 +39,7 @@ in {
             {
               name = "NixOS Wiki";
               tags = ["wiki" "nix"];
-              url = "https://nixos.wiki";
+              url = "https://wiki.nixos.org";
             }
           ];
 
