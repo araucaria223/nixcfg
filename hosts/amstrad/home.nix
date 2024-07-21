@@ -26,5 +26,4 @@
   hyprland.monitor = ",preferred,auto,1";
 
   librewolf.enable = false;
-  brave.enable = false;
 }
