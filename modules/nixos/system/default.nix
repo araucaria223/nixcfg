@@ -13,6 +13,7 @@
     ./nh.nix
     ./nix.nix
     ./btrfs-scrub.nix
+    ./kernel.nix
   ];
 
   # bootloader
@@ -41,6 +42,8 @@
   nix-settings.enable = lib.mkDefault true;
   # btrfs filesystem scrubbing
   btrfs-scrub.enable = lib.mkDefault true;
+  # use latest kernel
+  kernel-patches.enable = lib.mkDefault true;
 
   services.upower.enable = true;
 }
