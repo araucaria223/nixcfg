@@ -82,7 +82,7 @@
 
           modules = [
             inputs.disko.nixosModules.default
-            (import ./modules/nixos/system/disko.nix {device = "/dev/sda";})
+            (import ./hosts/amstrad/disko.nix {device = "/dev/sda";})
 
             ./hosts/amstrad/configuration.nix
             ./modules/nixos
