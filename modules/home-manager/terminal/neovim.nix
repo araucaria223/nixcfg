@@ -176,8 +176,10 @@ in {
 
         better-escape = {
           enable = true;
-          mapping = ["jk"];
-          timeout = 100;
+	  settings = {
+	    mapping = ["jk"];
+	    timeout = 100;
+	  };
         };
 
         cmp = {
