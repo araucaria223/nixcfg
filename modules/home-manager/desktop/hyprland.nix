@@ -151,6 +151,9 @@ in {
 
           "float, class:(qalculate-gtk)"
           "workspace special:calculator,class:(qalculate-gtk)"
+
+	  "fullscreenstate 0 2,class:(firefox)"
+	  "syncfullscreen 0,class:(firefox)"
         ];
 
         exec-once = [
@@ -174,7 +177,10 @@ in {
             "$mod, Q, killactive"
             "$mod, V, togglefloating"
             "$mod, F, fullscreen"
-	    "$mod SHIFT, F, fakefullscreen"
+
+	    # deprecated
+	    # "$mod SHIFT, F, fakefullscreen"
+
             "$mod, D, togglesplit"
 	    "$mod SHIFT, Space, hyprexpo:expo, toggle"
 

@@ -9,13 +9,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets."wireless.env" = {};
+
     networking.wireless = {
       enable = true;
       userControlled.enable = true;
+      environmentFile = config.sops.secrets."wireless.env".path;
+
       networks = {
-	"jet wireless" = {
-	  pskRaw = "a3cb6f2aa33972dfb9f79cabfc554061bbdb9bd65524079ed5ad1d244defdec4";
-	};
+	"@home_ssid@".psk = "@home_psk@";
+
+	"@hotspot_ssid@".psk = "@hotspot_psk@";
       };
     };
   };
