@@ -44,12 +44,6 @@
     #   inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     # };
 
-    # nightly hyprland
-    # removed currently due to issues with the cachix
-
-    #hyprland.url = "git+https://github.com/andresilva/Hyprland?ref=nix-build-improvements&submodules=1";
-    #hyprland.url = "github:hyprwm/Hyprland";
-
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins = {
       url = "git+https://github.com/hyprwm/hyprland-plugins";
