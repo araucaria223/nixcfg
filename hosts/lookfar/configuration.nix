@@ -18,7 +18,8 @@
 
   networking.hostName = "${settings.hostname}";
 
-  time.timeZone = "Europe/London";
+  #time.timeZone = "Europe/London";
+  services.automatic-timezoned.enable = true;
   i18n.defaultLocale = "en_GB.UTF-8";
 
   # firmware updates
