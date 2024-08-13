@@ -152,8 +152,8 @@ in {
           "float, class:(qalculate-gtk)"
           "workspace special:calculator,class:(qalculate-gtk)"
 
-	  "fullscreenstate 0 2,class:(firefox)"
-	  "syncfullscreen 0,class:(firefox)"
+	  #"fullscreenstate 0 2,class:(firefox)"
+	  #"syncfullscreen 0,class:(firefox)"
         ];
 
         exec-once = [
