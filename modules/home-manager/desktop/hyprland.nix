@@ -167,6 +167,7 @@ in {
 	  kty = "${pkgs.kitty}/bin/kitty";
 	  pmx = "${pkgs.pamixer}/bin/pamixer";
 	  fzl = "${pkgs.fuzzel}/bin/fuzzel";
+	  bmj = "${pkgs.bemoji}/bin/bemoji";
 	  scr = "${screenshot}/bin/screenshot";
 	  cpk = "${color-picker}/bin/color-picker";
 	  hpl = "${pkgs.hyprlock}/bin/hyprlock";
@@ -193,6 +194,7 @@ in {
 
             "$mod, Return, exec, ${kty}"
             "$mod, Space, exec, pgrep fuzzel || ${fzl}"
+	    "$mod, e, exec, pgrep fuzzel || ${bmj}"
 
 	    "$mod SHIFT, S, exec, ${scr}"
             "$mod SHIFT, L, exec, pgrep hyprlock || ${hpl}"
