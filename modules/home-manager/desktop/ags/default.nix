@@ -23,5 +23,7 @@ in {
         bun
       ];
     };
+
+    home.packages = [pkgs.bun];
   };
 }

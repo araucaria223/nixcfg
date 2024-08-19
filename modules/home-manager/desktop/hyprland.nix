@@ -212,6 +212,8 @@ in {
 	    "$mod SHIFT, I, movetoworkspace, system"
 
             "$mod, C, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || ${cal} &"
+	    # reload wifi network
+	    "$mod, R, exec, wpa_cli reconnect"
           ]
           ++ (
             builtins.concatLists (builtins.genList (
