@@ -10,7 +10,7 @@
     ./hyprpaper.nix
     ./waybar
     ./mako.nix
-    #./ags
+    ./ags
     ./cursor.nix
     ./font.nix
     ./gtk.nix
@@ -49,7 +49,7 @@
   fuzzel.enable = lib.mkDefault true;
 
   # widget framework
-  #ags.enable = lib.mkDefault true;
+  ags.enable = lib.mkDefault true;
 
   # system bar
   waybar.enable = lib.mkDefault true;
