@@ -93,7 +93,6 @@ function Media() {
 
 	return Widget.Box({
 		class_name: "media container",
-		css: "min-width: 120px",
 		children: [icon, labelButton],
 	})
 }
@@ -265,11 +264,11 @@ function Right() {
 		hpack: "end",
 		spacing: 8,
 		children: [
-			Volume(),
+			SysTray(),
 			Microphone(),
+			Volume(),
 			Battery(),
 			Clock(),
-			SysTray(),
 		],
 	})
 }
