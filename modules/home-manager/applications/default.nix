@@ -65,7 +65,7 @@
 
   # chat clients
   discord.enable = lib.mkDefault true;
-  element.enable = lib.mkDefault true;
+  #element.enable = lib.mkDefault true;
 
   # pdf viewer
   zathura.enable = lib.mkDefault true;
