@@ -5,4 +5,6 @@
     ./desktop
     ./applications
   ];
+
+  nixpkgs.config.allowUnfree = true;
 }

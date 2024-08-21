@@ -29,6 +29,8 @@
     qbittorrent
     # password manager
     keepassxc
+    # music streaming
+    spotify
   ];
 
   # terminal emulators

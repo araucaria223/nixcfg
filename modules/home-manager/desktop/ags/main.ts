@@ -5,6 +5,8 @@ const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
 
+import { MediaWidget } from "./media.ts"
+
 const date = Variable("", {
 	poll: [5000, `bash -c 'LANG=en_us_8859_1 date "+%H:%M %b %e."'`],
 })
@@ -74,7 +76,8 @@ function Media() {
 
 	const labelButton = Widget.Button({
 		class_name: "media",
-		on_primary_click: () => mpris.getPlayer("")?.playPause(),
+		//on_primary_click: () => mpris.getPlayer("")?.playPause(),
+		on_primary_click: () => MediaWindow.visible = !MediaWindow.visible,
 		on_secondary_click: () => mpris.getPlayer("")?.next(),
 		on_middle_click: () => mpris.getPlayer("")?.previous(),
 		on_hover: () => console.log(mpris.getPlayer("")?.identity),
@@ -96,6 +99,13 @@ function Media() {
 		children: [icon, labelButton],
 	})
 }
+
+const MediaWindow = Widget.Window({
+	name: "mpris",
+	anchor: ["top"],
+	child: MediaWidget(),
+	visible: false,
+})
 
 function Volume() {
 	const icons = {
@@ -244,7 +254,6 @@ function Left() {
 		children: [
 			NixLogo(),
 			Workspaces(),
-			Media(),
 			//ClientTitle(),
 		],
 	})
@@ -254,6 +263,7 @@ function Center() {
 	return Widget.Box({
 		spacing: 8,
 		children: [
+			Media(),
 			//Notification(),
 		],
 	})
@@ -295,6 +305,7 @@ App.config({
 	style: "./style.scss",
 	windows: [
 		...bars,
+		MediaWindow,
 		//...micPopups,
 		//applauncher,
 		//NotificationPopups()

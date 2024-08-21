@@ -143,7 +143,7 @@ function Player(player) {
   )
 }
 
-export function Media() {
+export function MediaWidget() {
   return Widget.Box({
     vertical: true,
     css: "min-height: 2px; min-width: 2px;",
