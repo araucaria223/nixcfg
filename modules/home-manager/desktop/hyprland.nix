@@ -159,7 +159,7 @@ in {
         exec-once = [
           "[workspace special:system silent] ${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b"
 	  # ${pkgs.waybar}/bin/waybar"
-	  "${pkgs.ags}/bin/ags"
+	  "ags"
         ];
 
         "$mod" = "SUPER";
@@ -213,6 +213,7 @@ in {
 	    "$mod SHIFT, I, movetoworkspace, system"
 
             "$mod, C, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || ${cal} &"
+
 	    # reload wifi network
 	    "$mod, R, exec, wpa_cli reconnect"
           ]

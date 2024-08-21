@@ -9,6 +9,7 @@
     ./bottom.nix
     ./fzf.nix
     ./direnv.nix
+    ./ncspot.nix
   ];
 
   home.packages = with pkgs; [
@@ -35,6 +36,9 @@
 
   # system monitor
   bottom.enable = lib.mkDefault true;
+
+  # spotify client
+  ncspot.enable = lib.mkDefault true;
 
   programs.yt-dlp.enable = true;
 }
