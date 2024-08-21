@@ -42,5 +42,7 @@
 
   nh.enable = false;
 
+  environment.systemPackages = [pkgs.bun];
+
   system.stateVersion = "24.05";
 }

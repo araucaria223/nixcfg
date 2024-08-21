@@ -18,6 +18,7 @@
     ./gaming.nix
     ./stremio.nix
     ./tidal.nix
+    ./spotify.nix
     ./element.nix
     ./mpv.nix
   ];
@@ -29,8 +30,6 @@
     qbittorrent
     # password manager
     keepassxc
-    # music streaming
-    spotify
   ];
 
   # terminal emulators
@@ -64,6 +63,7 @@
 
   # music streaming
   tidal.enable = lib.mkDefault true;
+  spotify.enable = lib.mkDefault true;
 
   # chat clients
   discord.enable = lib.mkDefault true;
