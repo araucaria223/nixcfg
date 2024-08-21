@@ -8,7 +8,7 @@ const systemtray = await Service.import("systemtray")
 const date = Variable("", {
 	poll: [5000, `bash -c 'LANG=en_us_8859_1 date "+%H:%M %b %e."'`],
 })
-const iconSize = 14;
+const iconSize = 0;
 
 function Workspaces() {
 	const activeId = hyprland.active.workspace.bind("id");
@@ -72,12 +72,29 @@ function Media() {
 		}
 	})
 
-	return Widget.Button({
+	const labelButton = Widget.Button({
 		class_name: "media",
 		on_primary_click: () => mpris.getPlayer("")?.playPause(),
-		on_scroll_up: () => mpris.getPlayer("")?.next(),
-		on_scroll_down: () => mpris.getPlayer("")?.previous(),
+		on_secondary_click: () => mpris.getPlayer("")?.next(),
+		on_middle_click: () => mpris.getPlayer("")?.previous(),
+		on_hover: () => console.log(mpris.getPlayer("")?.identity),
+		cursor: "pointer",
+		//on_scroll_up: () => mpris.getPlayer("")?.next(),
+		//on_scroll_down: () => mpris.getPlayer("")?.previous(),
 		child: Widget.Label({ label }),
+	})
+
+	const icon = Widget.Icon({
+		icon: "folder-music-symbolic",
+		size: iconSize,
+		className: "icon",
+		cursor: "pointer",
+	})
+
+	return Widget.Box({
+		class_name: "media container",
+		css: "min-width: 120px",
+		children: [icon, labelButton],
 	})
 }
 
@@ -115,7 +132,7 @@ function Volume() {
 	return Widget.Box({
 		class_name: "yellow container",
 		css: "min-width: 120px",
-		childreen: [icon, slider],
+		children: [icon, slider],
 	})
 }
 
@@ -136,7 +153,7 @@ function Microphone() {
 		}
 	}
 
-	const icon = Wdiget.Icon({
+	const icon = Widget.Icon({
 		icon: Utils.watch(getIcon(), audio.microphone, getIcon),
 		className: "icon",
 		size: iconSize,
@@ -154,9 +171,22 @@ function Microphone() {
 }
 
 function Battery() {
+	const icons = {
+		101: "full",
+		67: "good",
+		34: "low",
+		5: "caution",
+		0: "empty",
+	}
+
+	/*
+	const icon = battery.bind("percent").as(p => icons[[101, 67, 34, 5, 0].find(
+		threshold => threshold <= p)!])
+	*/
+
 	const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
-	const icon = battery.bind("percent").as(p =>
-		`battery-${Math.floor(p / 10) * 10}-symbolic`)
+
+	const icon = battery.bind("icon_name")
 
 	return Widget.Box({
 		class_name: "battery container green",
@@ -195,13 +225,17 @@ function SysTray() {
 }
 
 function NixLogo() {
-	return Widget.Label({
+	const logo = Widget.Label({
 		label: "",
 		css: `
       padding-left: 7px;
       padding-right: 7px;
       color: @blue_1
     `,
+	})
+
+	return Widget.Box({
+		children: [logo,],
 	})
 }
 
@@ -211,7 +245,8 @@ function Left() {
 		children: [
 			NixLogo(),
 			Workspaces(),
-			ClientTitle(),
+			Media(),
+			//ClientTitle(),
 		],
 	})
 }
@@ -220,8 +255,7 @@ function Center() {
 	return Widget.Box({
 		spacing: 8,
 		children: [
-			Media(),
-			Notification(),
+			//Notification(),
 		],
 	})
 }

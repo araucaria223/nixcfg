@@ -14,6 +14,7 @@
     ./nix.nix
     ./btrfs-scrub.nix
     ./kernel.nix
+    ./battery.nix
   ];
 
   # bootloader
@@ -44,6 +45,6 @@
   btrfs-scrub.enable = lib.mkDefault true;
   # use latest kernel
   kernel-patches.enable = lib.mkDefault true;
-
-  services.upower.enable = true;
+  # enable battery options
+  battery.enable = lib.mkDefault true;
 }

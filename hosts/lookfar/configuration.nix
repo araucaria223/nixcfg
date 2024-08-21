@@ -12,10 +12,6 @@
     inputs.nix-colors.homeManagerModules.default
   ];
 
-  #sops.defaultSopsFile = ../../secrets/secrets.yaml;
-  #sops.defaultSopsFormat = "yaml";
-  #sops.secrets.adzuki-password = {};
-
   networking.hostName = "${settings.hostname}";
 
   time.timeZone = "Europe/London";
