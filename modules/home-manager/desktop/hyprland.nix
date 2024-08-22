@@ -159,7 +159,8 @@ in {
         exec-once = [
           "[workspace special:system silent] ${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b"
 	  # ${pkgs.waybar}/bin/waybar"
-	  "ags"
+	  #"ags"
+	  "${pkgs.hyprpanel}/bin/hyprpanel"
         ];
 
         "$mod" = "SUPER";

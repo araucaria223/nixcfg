@@ -56,6 +56,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.ags.follows = "ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
@@ -63,7 +69,16 @@
     self,
     nixpkgs,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+
+      overlays = [
+        inputs.hyprpanel.overlay
+      ];
+    };
+  in {
     homeManagerModules.default = ./modules/home-manager;
     nixosConfigurations = {
       amstrad =
