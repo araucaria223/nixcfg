@@ -433,6 +433,29 @@
         "type": "github"
       }
     },
+    "hyprpanel": {
+      "inputs": {
+        "ags": [
+          "ags"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1724182623,
+        "narHash": "sha256-DZEcr26bxcwdBy+Aa4acEvuau7btwb1aqiS8sPPfuXE=",
+        "owner": "Jas-SinghFSU",
+        "repo": "HyprPanel",
+        "rev": "2aef35afd8278b543ddb48d92db051d34c61a394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Jas-SinghFSU",
+        "repo": "HyprPanel",
+        "type": "github"
+      }
+    },
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
@@ -726,6 +749,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
+        "hyprpanel": "hyprpanel",
         "impermanence": "impermanence",
         "nix-colors": "nix-colors",
         "nix-vscode-extensions": "nix-vscode-extensions",
