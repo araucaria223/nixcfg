@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -53,4 +54,8 @@
 
   # system bar
   waybar.enable = lib.mkDefault true;
+
+  nixpkgs.overlays = [
+    inputs.hyprpanel.overlay
+  ];
 }

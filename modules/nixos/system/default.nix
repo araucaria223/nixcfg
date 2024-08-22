@@ -10,6 +10,7 @@
     ./fprintd.nix
     ./pipewire.nix
     ./wifi.nix
+    ./bluetooth.nix
     ./nh.nix
     ./nix.nix
     ./btrfs-scrub.nix
@@ -37,6 +38,8 @@
   pipewire.enable = lib.mkDefault true;
   # wireless
   wifi.enable = lib.mkDefault true;
+  # bluetooth
+  bluetooth.enable = lib.mkDefault true;
   # nix tool with pretty output
   nh.enable = lib.mkDefault true;
   # basic nix settings changes
