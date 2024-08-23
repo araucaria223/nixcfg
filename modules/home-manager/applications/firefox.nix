@@ -164,7 +164,7 @@ in {
                 ];
               }
             ];
-            iconUpdateURL = "https://searxng.site/favicon.ico";
+            iconUpdateURL = "https://search.inetol.net/favicon.ico";
             updateInterval = daily;
             definedAliases = ["${prefix}sx"];
           };
