@@ -155,7 +155,7 @@ in {
           "SearXNG" = {
             urls = [
               {
-                template = "https://searxng.site/searxng/search";
+                template = "https://search.inetol.net/search";
                 params = [
                   {
                     name = "q";
