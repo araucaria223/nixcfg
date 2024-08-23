@@ -176,6 +176,7 @@ in {
 	  cal = "${pkgs.qalculate-gtk}/bin/qalculate-gtk";
 	  btm = "${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b";
 	  bct = "${pkgs.brightnessctl}/bin/brightnessctl";
+	  pct = "${pkgs.playerctl}/bin/playerctl";
 	in [
             "$mod, Q, killactive"
             "$mod, V, togglefloating"
@@ -190,6 +191,10 @@ in {
             ",XF86AudioRaiseVolume, exec, ${pmx} -i 5"
             ",XF86AudioLowerVolume, exec, ${pmx} -d 5"
             ",XF86AudioMute, exec, ${pmx} --toggle-mute"
+
+	    ",XF86AudioPlay, exec, ${pct} play-pause"
+	    ",XF86AudioNext, exec, ${pct} next"
+	    ",XF86AudioPrev, exec, ${pct} previous"
 
 	    ",XF86MonBrightnessUp, exec, ${bct} s +5%"
 	    ",XF86MonBrightnessDown, exec, ${bct} s 5%-"
