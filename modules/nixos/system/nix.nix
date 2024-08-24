@@ -27,8 +27,7 @@ in {
     nix.gc = {
       automatic = true;
       dates = "daily";
-      # only keep newest 30 generations
-      options = "--delete-older-than +30";
+      options = "--delete-older-than 7d";
     };
 
     nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
