@@ -16,6 +16,7 @@
     ./btrfs-scrub.nix
     ./kernel.nix
     ./battery.nix
+    ./greetd.nix
   ];
 
   # bootloader
@@ -50,4 +51,6 @@
   kernel-patches.enable = lib.mkDefault true;
   # enable battery options
   battery.enable = lib.mkDefault true;
+  # enable greetd display manager
+  greetd.enable = lib.mkDefault true;
 }

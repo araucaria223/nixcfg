@@ -16,6 +16,8 @@
     Value = true;
     Status = "locked";
   };
+
+  SearXNGInstance = "https://search.inetol.net";
 in {
   options.firefox = {
     enable = lib.mkEnableOption "Enables firefox";
@@ -104,7 +106,7 @@ in {
 
       profiles."${config.home.username}" = {
         settings = {
-          "browser.startup.homepage" = "https://searxng.site";
+          "browser.startup.homepage" = "${SearXNGInstance}";
         };
 
         bookmarks = [
@@ -155,7 +157,7 @@ in {
           "SearXNG" = {
             urls = [
               {
-                template = "https://search.inetol.net/search";
+                template = "${SearXNGInstance}/search";
                 params = [
                   {
                     name = "q";
@@ -164,7 +166,7 @@ in {
                 ];
               }
             ];
-            iconUpdateURL = "https://search.inetol.net/favicon.ico";
+            iconUpdateURL = "${SearXNGInstance}/favicon.ico";
             updateInterval = daily;
             definedAliases = ["${prefix}sx"];
           };

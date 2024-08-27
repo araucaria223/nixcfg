@@ -156,10 +156,18 @@ in {
 	  #"syncfullscreen 0,class:(firefox)"
         ];
 
+	workspace = let
+	  cal = "${pkgs.qalculate-gtk}/bin/qalculate-gtk";
+	  btm = "${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b";
+	in [
+	  "special:system, on-created-empty:${btm}"
+	  "special:calculator, on-created-empty:${cal}"
+	];
+
         exec-once = [
-          "[workspace special:system silent] ${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b"
+	  #"[workspace special:system silent] ${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b"
 	  # ${pkgs.waybar}/bin/waybar"
-	  #"ags"
+	  #"${config.programs.ags.package}/bin/ags"
 	  "${pkgs.hyprpanel}/bin/hyprpanel"
         ];
 
@@ -173,8 +181,6 @@ in {
 	  scr = "${screenshot}/bin/screenshot";
 	  cpk = "${color-picker}/bin/color-picker";
 	  hpl = "${pkgs.hyprlock}/bin/hyprlock";
-	  cal = "${pkgs.qalculate-gtk}/bin/qalculate-gtk";
-	  btm = "${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b";
 	  bct = "${pkgs.brightnessctl}/bin/brightnessctl";
 	  pct = "${pkgs.playerctl}/bin/playerctl";
 	in [
@@ -215,10 +221,11 @@ in {
             "$mod, mouse_down, workspace, e+1"
             "$mod, mouse_up, workspace, e-1"
 
-            "$mod, I, exec, pgrep btm && hyprctl dispatch togglespecialworkspace system || ${btm} &"
-	    "$mod SHIFT, I, movetoworkspace, system"
+	    #"$mod, I, exec, pgrep btm && hyprctl dispatch togglespecialworkspace system || ${btm} &"
+	    "$mod, I, togglespecialworkspace, system"
+	    "$mod, C, togglespecialworkspace, calculator"
 
-            "$mod, C, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || ${cal} &"
+	    #"$mod, C, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || ${cal} &"
 
 	    # reload wifi network
 	    "$mod, R, exec, wpa_cli reconnect"

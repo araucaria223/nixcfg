@@ -62,7 +62,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions?rev=2c15c14f9d4485b18d7cec54081bdfd76335cfc8";
   };
 
   outputs = {

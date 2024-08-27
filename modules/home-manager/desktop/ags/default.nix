@@ -21,6 +21,9 @@ in {
       configDir = ./.;
       extraPackages = with pkgs; [
         bun
+	gtksourceview
+	webkitgtk
+	accountsservice
       ];
     };
 

@@ -8,7 +8,7 @@
   ];
 
   # display manager
-  sddm.enable = lib.mkDefault true;
+  sddm.enable = lib.mkDefault false;
   # wayland compositor
   hyprland.enable = lib.mkDefault true;
   # screen locker

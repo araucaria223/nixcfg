@@ -13,7 +13,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.upower.enable = true;
+    services = {
+      upower.enable = true;
+      power-profiles-daemon.enable = true;
+    };
 
     # send a notification when battery is low
     systemd.services.battery_check = {
