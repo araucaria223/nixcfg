@@ -5,6 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+    lix = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -117,6 +122,7 @@
             ./hosts/lookfar/configuration.nix
             ./modules/nixos
 
+	    inputs.lix.nixosModules.default
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
             inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
