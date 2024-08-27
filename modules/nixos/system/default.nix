@@ -32,7 +32,7 @@
   # main user account
   mainUser.enable = lib.mkDefault true;
   # lightweight sudo replacement
-  doas.enable = lib.mkDefault false;
+  doas.enable = lib.mkDefault true;
   # fingerprint authentification
   fprintd.enable = lib.mkDefault true;
   # pipewire audio
