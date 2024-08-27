@@ -7,7 +7,7 @@
 }: let
   cfg = config.wifi;
 
-  getFileName = stringAsChars (x:
+  getFileName = lib.stringAsChars (x:
     if x == " "
     then "-"
     else x);
@@ -35,6 +35,19 @@
       source = config.sops.templates."${getFileName ssid}".path;
     };
   };
+
+  createNMConfig = ssid: ''
+    [connection]
+    id=${ssid}
+    type=wifi
+
+    [wifi]
+    ssid=${ssid}
+
+    [wifi-security]
+    key-mgmt=wpa-psk
+    psk=${config.sops.placeholder."${getFileName ssid}-psk"}
+  '';
 in {
   options.wifi = {
     enable = lib.mkEnableOption ''
@@ -46,12 +59,18 @@ in {
     networking.networkmanager.enable = true;
     users.users.${settings.username}.extraGroups = ["networkmanager"];
 
-    # test
-    sops = createSops "jet wireless";
-    environment.etc = createWifi "jet wireless";
+    sops = {
+      secrets.jet-wireless-psk = {};
+      templates."jet-wireless.nmconnection".content = createNMConfig "jet wireless";
+    };
+
+    environment.etc."NetworkManager/system-connections/jet-wireless.nmconnection" = {
+      mode = "0400";
+      source = config.sops.templates."jet-wireless.nmconnection".path;
+    };
 
     systemd.services.NetworkManager-predefined-connections = {
-      restartTriggers = mapAttrsToList (name: value: value.source) keyFiles;
+      restartTriggers = [ "/etc/NetworkManager/system-connections/jet-wireless.nmconnection" ];
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
