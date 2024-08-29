@@ -15,6 +15,10 @@ in {
       provider = "manual";
       latitude = 51.5;
       longitude = 0.1;
+      temperature = {
+	day = 6500;
+	night = 3700;
+      };
     };
   };
 }
