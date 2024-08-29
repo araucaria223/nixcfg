@@ -8,8 +8,7 @@
 in {
   options.git = {
     enable = lib.mkEnableOption ''
-      Enable git -
-	the ubiquitous version manager
+      Enable git
     '';
   };
 
@@ -20,7 +19,7 @@ in {
       userEmail = "${settings.email}";
       extraConfig = {
 	init.defaultBranch = "main";
-	safe.directory = "/etc/nixos";
+	safe.directory = "${config.home.homeDirectory}/nixos";
       };
     };
   };
