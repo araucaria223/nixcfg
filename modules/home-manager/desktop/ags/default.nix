@@ -27,6 +27,10 @@ in {
       ];
     };
 
-    home.packages = [pkgs.bun];
+    home.packages = with pkgs; [
+      bun
+      libnotify
+      swww
+    ];
   };
 }
