@@ -15,18 +15,6 @@
   networking.hostName = "${settings.hostname}";
 
   time.timeZone = "Europe/London";
-  #time.timeZone = "UTC";
-  #services.localtimed.enable = true;
-  #services.automatic-timezoned.enable = true;
-  #services.geoclue2 = {
-  #  enable = true;
-  #   appConfig."localtimed" = {
-  #     isAllowed = true;
-  #     isSystem = true;
-  #     users = [ "325" ];
-  #   };
-  # };
-  #location.provider = "geoclue2";
 
   i18n.defaultLocale = "en_GB.UTF-8";
 
@@ -41,6 +29,7 @@
   services.openssh.enable = true;
 
   nh.enable = false;
+  doas.enable = false;
 
   environment.systemPackages = [pkgs.bun];
 
