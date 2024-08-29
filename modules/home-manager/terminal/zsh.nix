@@ -29,16 +29,21 @@ in {
       history.path = "${config.xdg.dataHome}/zsh/history";
 
       shellAliases = let
-        flakeUp = "nix flake update ${config.home.homeDirectory}/nixos";
+        flakeUp = "${pkgs.nix}/bin/nix flake update ${config.home.homeDirectory}/nixos";
+	eza = "${pkgs.eza}/bin/eza";
+	bat = "${pkgs.bat}/bin/bat";
+	fastfetch = "${pkgs.fastfetch}/bin/fastfetch";
+	nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+	git = "${pkgs.git}/bin/git";
       in {
-        ls = "${pkgs.eza}/bin/eza";
-        lsa = "${pkgs.eza}/bin/eza -la";
-        lst = "${pkgs.eza}/bin/eza --tree --icons";
-        cat = "${pkgs.bat}/bin/bat --theme=base16";
-        f = "${pkgs.fastfetch}/bin/fastfetch --load-config examples/9.jsonc";
+        ls = "${eza}";
+        lsa = "${eza} -la";
+        lst = "${eza} --tree --icons";
+        cat = "${bat} --theme=base16";
+        f = "${fastfetch} --load-config examples/9.jsonc";
 
-        reb = "sudo nixos-rebuild switch --flake ~/nixos#${settings.hostname}";
-        up = "cd ${config.home.homeDirectory}/nixos && ${flakeUp} && git add flake.nix flake.lock && git commit -m 'Flake update' && reb";
+        reb = "sudo ${nixos-rebuild} switch --flake ~/nixos#${settings.hostname}";
+        up = "cd ${config.home.homeDirectory}/nixos && ${flakeUp} && ${git} add flake.nix flake.lock && ${git} commit -m 'Flake update' && reb";
       };
     };
   };
