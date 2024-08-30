@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  settings,
   ...
 }: let
   cfg = config.greetd;
@@ -13,6 +14,7 @@
 
       const name = Widget.Entry({
 	placeholder_text: 'Username',
+	text: "${settings.username}",
 	on_accept: () => password.grab_focus(),
       })
 
@@ -63,7 +65,7 @@
     services.greetd = {
       enable = true;
       settings = {
-	default_session.command = "${inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland}/bin/Hyprland --config ${vars.hyprlandConfig}";
+	default_session.command = "${config.programs.hyprland.package}/bin/Hyprland --config ${vars.hyprlandConfig}";
       };
     };
   };
