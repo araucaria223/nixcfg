@@ -21,6 +21,10 @@
     ./fuzzel.nix
   ];
 
+  home.packages = with pkgs; [
+    swayimg
+  ];
+
   # wm / compositor
   hyprland.enable = lib.mkDefault true;
 

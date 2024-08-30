@@ -13,8 +13,8 @@ in {
 
   options.neovim = {
     enable = lib.mkEnableOption ''
-      Enable neovim -
-	a powerful text editor
+           Enable neovim -
+      a powerful text editor
     '';
   };
 
@@ -53,22 +53,22 @@ in {
       '';
 
       autoGroups = {
-	write_quit = {};
+        write_quit = {};
       };
 
       autoCmd = [
-	{
-	  group = "write_quit";
-	  event = ["BufWritePost" "VimLeave"];
-	  pattern = "*";
-	  callback = {
-	    __raw = ''
-	      function()
-		vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
-	      end
-	    '';
-	  };
-	}
+        {
+          group = "write_quit";
+          event = ["BufWritePost" "VimLeave"];
+          pattern = "*";
+          callback = {
+            __raw = ''
+                   function()
+              vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+                   end
+            '';
+          };
+        }
       ];
 
       keymaps = [
@@ -103,8 +103,14 @@ in {
         indent-blankline.enable = true;
         # trims whitespace
         trim.enable = true;
-	# startpage
-	startify.enable = true;
+        # startpage
+        startify.enable = true;
+
+	# lsp for embedded code
+	otter = {
+	  enable = true;
+	  settings.handle_leading_whitespace = true;
+	};
 
         zen-mode = {
           enable = true;
@@ -139,19 +145,19 @@ in {
           folding = false;
           nixvimInjections = true;
           nixGrammars = true;
-	  grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+          grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
 
           settings = {
             highlight = {
-	      enable = true;
-	      additional_vim_regex_highlighting = true;
-	    };
+              enable = true;
+              additional_vim_regex_highlighting = true;
+            };
             indent.enable = true;
           };
         };
 
         treesitter-context.enable = true;
-	cmp-treesitter.enable = true;
+        cmp-treesitter.enable = true;
 
         lsp = {
           enable = true;
@@ -172,14 +178,14 @@ in {
           };
         };
 
-	lsp-format.enable = true;
+        lsp-format.enable = true;
 
         better-escape = {
           enable = true;
-	  settings = {
-	    mapping = ["jk"];
-	    timeout = 100;
-	  };
+          settings = {
+            mapping = ["jk"];
+            timeout = 100;
+          };
         };
 
         cmp = {
@@ -191,7 +197,7 @@ in {
               {name = "path";}
               {name = "buffer";}
               {name = "luasnip";}
-	      {name = "treesitter";}
+              {name = "treesitter";}
             ];
           };
         };
