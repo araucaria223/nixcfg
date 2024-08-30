@@ -51,10 +51,11 @@
     '';
 
     hyprlandConfig = pkgs.writeText "greetd-hyprland-config" ''
-      exec-once = ${inputs.ags.packages."${pkgs.stdenv.hostPlatform.system}".ags}/bin/ags --config ${greeter}; ${inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland}/bin/hyprctl dispatch exit
+      exec-once = ${inputs.ags.packages."${pkgs.stdenv.hostPlatform.system}".ags}/bin/ags --config ${greeter}; ${config.programs.hyprland.package}/bin/hyprctl dispatch exit
     '';
   };
   in {
+
   options.greetd = {
     enable = lib.mkEnableOption ''
       Enables greetd
