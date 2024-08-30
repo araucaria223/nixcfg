@@ -173,15 +173,26 @@ in {
 
         "$mod" = "SUPER";
 
+	# repeated if held
+	binde = let
+	  pmx = "${pkgs.pamixer}/bin/pamixer";
+	  bct = "${pkgs.brightnessctl}/bin/brightnessctl";
+	in [
+            ",XF86AudioRaiseVolume, exec, ${pmx} -i 5"
+            ",XF86AudioLowerVolume, exec, ${pmx} -d 5"
+            ",XF86AudioMute, exec, ${pmx} --toggle-mute"
+
+	    ",XF86MonBrightnessUp, exec, ${bct} s +5%"
+	    ",XF86MonBrightnessDown, exec, ${bct} s 5%-"
+	];
+
         bind = let
 	  kty = "${pkgs.kitty}/bin/kitty";
-	  pmx = "${pkgs.pamixer}/bin/pamixer";
 	  fzl = "${pkgs.fuzzel}/bin/fuzzel";
 	  bmj = "${pkgs.bemoji}/bin/bemoji";
 	  scr = "${screenshot}/bin/screenshot";
 	  cpk = "${color-picker}/bin/color-picker";
 	  hpl = "${pkgs.hyprlock}/bin/hyprlock";
-	  bct = "${pkgs.brightnessctl}/bin/brightnessctl";
 	  pct = "${pkgs.playerctl}/bin/playerctl";
 	in [
             "$mod, Q, killactive"
@@ -194,16 +205,9 @@ in {
             "$mod, D, togglesplit"
 	    "$mod SHIFT, Space, hyprexpo:expo, toggle"
 
-            ",XF86AudioRaiseVolume, exec, ${pmx} -i 5"
-            ",XF86AudioLowerVolume, exec, ${pmx} -d 5"
-            ",XF86AudioMute, exec, ${pmx} --toggle-mute"
-
 	    ",XF86AudioPlay, exec, ${pct} play-pause"
 	    ",XF86AudioNext, exec, ${pct} next"
 	    ",XF86AudioPrev, exec, ${pct} previous"
-
-	    ",XF86MonBrightnessUp, exec, ${bct} s +5%"
-	    ",XF86MonBrightnessDown, exec, ${bct} s 5%-"
 
             "$mod, Return, exec, ${kty}"
             "$mod, Space, exec, pgrep fuzzel || ${fzl}"
