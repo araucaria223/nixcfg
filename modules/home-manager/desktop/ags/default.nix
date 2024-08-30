@@ -9,7 +9,7 @@
 
   snapshot = pkgs.writeShellApplication {
     name = "snapshot";
-    runtimeInputs = with pkgs; [grimblast libnotify coreutils yazi swayimg];
+    runtimeInputs = with pkgs; [grimblast libnotify coreutils yazi swayimg kitty];
     text = ''
       outputDir=${config.home.homeDirectory}/media/screenshots
       outputFile="snapshot_$(date +%Y-%m-%d_%H-%M-%S).png"
@@ -42,7 +42,7 @@
 	  -a "Grimblast" \
 	  -t 7000 \
 	  -u normal \
-	  --action="scriptAction:-yazi $outputDir=Directory" \
+	  --action="scriptAction:-kitty -e yazi $outputDir=Directory" \
 	  --action="scriptAction:-swayimg $recentFile=View"
       fi
     '';

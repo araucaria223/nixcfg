@@ -5,6 +5,7 @@
     ./impermanence.nix
     ./home-manager.nix
     ./sops.nix
+    ./root.nix
     ./user.nix
     ./doas.nix
     ./fprintd.nix
@@ -29,6 +30,8 @@
   homeManager.enable = lib.mkDefault true;
   # secrets management
   sops-nix.enable = lib.mkDefault true;
+  # set root password
+  root.enable = lib.mkDefault true;
   # main user account
   mainUser.enable = lib.mkDefault true;
   # lightweight sudo replacement
