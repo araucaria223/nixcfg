@@ -34,7 +34,7 @@ in {
 	bat = "${pkgs.bat}/bin/bat";
 	fastfetch = "${pkgs.fastfetch}/bin/fastfetch";
 	nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
-	git = "${pkgs.git}/bin/git";
+	git = "${pkgs.git}/bin/git -C ${config.home.homeDirectory}";
       in rec {
         ls = "${eza}";
         lsa = "${eza} -la";
@@ -43,7 +43,7 @@ in {
         f = "${fastfetch} --load-config examples/9.jsonc";
 
         reb = "builtin command sudo ${nixos-rebuild} switch --flake ~/nixos#${settings.hostname}";
-        up = "builtin cd ${config.home.homeDirectory}/nixos && ${flakeUp} && ${git} add flake.nix flake.lock && ${git} commit -m 'Flake update' && builtin cd - && ${reb}";
+        up = "${flakeUp} && ${git} add flake.nix flake.lock && ${git} commit -m 'Flake update' && ${reb}";
       };
     };
   };

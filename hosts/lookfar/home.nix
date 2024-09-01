@@ -26,4 +26,5 @@
 
   librewolf.enable = false;
   emacs.enable = false;
+  hyprpaper.enable = false;
 }

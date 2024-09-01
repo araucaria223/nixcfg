@@ -63,10 +63,20 @@
   };
 
   config = lib.mkIf cfg.enable {
+    # services.greetd = {
+    #   enable = true;
+    #   settings = {
+    #     default_session.command = "${config.programs.hyprland.package}/bin/Hyprland --config ${vars.hyprlandConfig}";
+    #   };
+
     services.greetd = {
       enable = true;
-      settings = {
-	default_session.command = "${config.programs.hyprland.package}/bin/Hyprland --config ${vars.hyprlandConfig}";
+      settings = rec {
+	initial_session = {
+	  command = "${config.programs.hyprland.package}/bin/Hyprland";
+	  user = "${settings.username}";
+	};
+	default_session = initial_session;
       };
     };
   };

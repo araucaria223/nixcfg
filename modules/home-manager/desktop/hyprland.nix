@@ -22,6 +22,18 @@
       hyprpicker --autocopy
     '';
   };
+
+  set-wallpaper = pkgs.writeShellApplication {
+    name = "set-wallpaper";
+    runtimeInputs = with pkgs; [swww];
+    text = let
+      wallpaper = builtins.toString ../../assets/wallpapers/power-poles-sunset-pixel-moewalls-com.mp4;
+    in ''
+      swww-daemon &
+
+      swww img ${wallpaper}
+    '';
+  };
 in {
   options.hyprland = {
     enable = lib.mkEnableOption "Enable hyprland";
@@ -35,8 +47,8 @@ in {
     xdg = {
       portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-	configPackages = [pkgs.xdg-desktop-portal-hyprland];
+        extraPortals = [inputs.nixpkgs-stable.xdg-desktop-portal-hyprland];
+	configPackages = [inputs.nixpkgs-stable.xdg-desktop-portal-hyprland];
       };
 
       mimeApps = {
@@ -53,9 +65,7 @@ in {
       ];
 
       settings = {
-        monitor = [
-          "${cfg.monitor}"
-        ];
+        monitor = ["${cfg.monitor}"];
 
         input = {
           follow_mouse = "true";

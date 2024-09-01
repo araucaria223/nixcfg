@@ -2,15 +2,14 @@
   config,
   lib,
   settings,
+  inputs,
+  pkgs,
   ...
 }: let
   cfg = config.hyprpaper;
 in {
   options.hyprpaper = {
     enable = lib.mkEnableOption "Enables hyprpaper";
-    #wallpaper = lib.mkOption {
-    #  type = with lib.types; uniq path;
-    #};
   };
 
   config = lib.mkIf cfg.enable {

@@ -51,7 +51,7 @@
     #   inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     # };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=242e06b24212b61e7afbdf5cf4adae8886a28abd";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins = {
       url = "git+https://github.com/hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -63,11 +63,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.ags.follows = "ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #  hyprpanel = {
+    #    url = "github:Jas-SinghFSU/HyprPanel";
+    #    inputs.ags.follows = "ags";
+    #    inputs.nixpkgs.follows = "nixpkgs";
+    #  };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions?rev=2c15c14f9d4485b18d7cec54081bdfd76335cfc8";
   };
@@ -77,16 +77,25 @@
     nixpkgs,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
+    inherit (self) outputs;
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
 
-      overlays = [
-        inputs.hyprpanel.overlay
-      ];
-    };
+    forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     homeManagerModules.default = ./modules/home-manager;
+
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    overlays = import ./overlays {inherit inputs;};
+
     nixosConfigurations = {
       amstrad =
         nixpkgs.lib.nixosSystem
@@ -101,7 +110,7 @@
             (import ./hosts/amstrad/disko.nix {device = "/dev/sda";})
 
             ./hosts/amstrad/configuration.nix
-            ./modules/nixos
+	    ./modules/nixos
 
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
@@ -113,7 +122,7 @@
         nixpkgs.lib.nixosSystem
         {
           specialArgs = {
-            inherit inputs;
+            inherit inputs outputs;
             settings = import ./hosts/lookfar/settings.nix;
           };
 
@@ -122,7 +131,7 @@
             (import ./hosts/lookfar/disko.nix {device = "/dev/nvme0n1";})
 
             ./hosts/lookfar/configuration.nix
-            ./modules/nixos
+	    ./modules/nixos
 
 	    inputs.lix.nixosModules.default
             inputs.home-manager.nixosModules.default
