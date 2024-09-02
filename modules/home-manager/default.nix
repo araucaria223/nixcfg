@@ -32,5 +32,8 @@
 
   programs.home-manager.enable = true;
 
+  # enable managing xdg base directories
+  xdg.enable = true;
+
   colorScheme = inputs.nix-colors.colorSchemes.${settings.colorScheme};
 }
