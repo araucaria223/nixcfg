@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  outputs,
   settings,
   ...
 }: let
@@ -19,7 +20,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home-manager = {
-      extraSpecialArgs = {inherit inputs settings;};
+      extraSpecialArgs = {inherit inputs outputs settings;};
       users = {
         "${settings.username}" = {...}: {
           imports = [

@@ -2,7 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/b79ce4c43f9117b2912e7dbc68ccae4539259dda";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
@@ -53,11 +54,11 @@
     # };
 
     #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    #hyprland.inputs.nixpkgs.follows = "nixpkgs-for-hyprland";
+    #hyprland.inputs.nixpkgs.follows = "nixpkgs";
     # hyprland-plugins = {
     #   url = "git+https://github.com/hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
-    # };
+    #};
 
     # extensible widgets
     ags = {
@@ -71,7 +72,8 @@
     #    inputs.nixpkgs.follows = "nixpkgs";
     #  };
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions?rev=2c15c14f9d4485b18d7cec54081bdfd76335cfc8";
+    #nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions?rev=2c15c14f9d4485b18d7cec54081bdfd76335cfc8";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = {
@@ -138,8 +140,8 @@
 	    inputs.lix.nixosModules.default
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
-            inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
             inputs.sops-nix.nixosModules.sops
+            inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
           ];
         };
     };

@@ -38,17 +38,17 @@ in {
   options.hyprland = {
     enable = lib.mkEnableOption "Enable hyprland";
     monitor = lib.mkOption {
-      default = "eDP-1,2256x1504@60,0x0,1";
+      default = ",preferred,auto,1";
       description = "Primary monitor";
     };
   };
 
   config = lib.mkIf cfg.enable {
     xdg = {
-      portal = {
+      portal = with pkgs; { #inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}; {
         enable = true;
-        extraPortals = [inputs.nixpkgs-stable.xdg-desktop-portal-hyprland];
-	configPackages = [inputs.nixpkgs-stable.xdg-desktop-portal-hyprland];
+        extraPortals = [xdg-desktop-portal-hyprland];
+	configPackages = [xdg-desktop-portal-hyprland];
       };
 
       mimeApps = {
@@ -58,9 +58,10 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+      #package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+      package = pkgs.hyprland;
 
-      plugins = with inputs.hyprland-plugins.packages."${pkgs.stdenv.hostPlatform.system}"; [
+      plugins = with pkgs.hyprlandPlugins; [ #inputs.hyprland-plugins.packages."${pkgs.stdenv.hostPlatform.system}"; [
 	hyprexpo
       ];
 
@@ -177,8 +178,8 @@ in {
         exec-once = [
 	  #"[workspace special:system silent] ${pkgs.kitty}/bin/kitty -e ${pkgs.bottom}/bin/btm -b"
 	  # ${pkgs.waybar}/bin/waybar"
-	  #"${config.programs.ags.package}/bin/ags"
-	  "${pkgs.hyprpanel}/bin/hyprpanel"
+	  "${config.programs.ags.package}/bin/ags"
+	  #"${pkgs.hyprpanel}/bin/hyprpanel"
         ];
 
         "$mod" = "SUPER";

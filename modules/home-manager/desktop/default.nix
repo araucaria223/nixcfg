@@ -58,8 +58,4 @@
 
   # system bar
   waybar.enable = lib.mkDefault true;
-
-  nixpkgs.overlays = [
-    inputs.hyprpanel.overlay
-  ];
 }

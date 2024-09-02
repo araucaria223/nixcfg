@@ -74,7 +74,6 @@ in {
       swww
       sass
       brightnessctl
-      hyprpanel
     ]
     ++ [snapshot];
   };

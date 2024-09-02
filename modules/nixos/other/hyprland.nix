@@ -13,14 +13,16 @@ in {
 
   config = lib.mkIf cfg.enable {
     # enable the hyprland cachix
-    nix.settings = {
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
+    # nix.settings = {
+    #   substituters = ["https://hyprland.cachix.org"];
+    #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    # };
 
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+      #package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+      #package = pkgs.stable.hyprland;
+      package = pkgs.hyprland;
     };
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";

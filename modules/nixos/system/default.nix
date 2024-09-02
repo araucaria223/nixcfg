@@ -13,7 +13,6 @@
     ./wifi.nix
     ./bluetooth.nix
     ./nh.nix
-    ./nix.nix
     ./btrfs-scrub.nix
     ./kernel.nix
     ./battery.nix
@@ -46,8 +45,6 @@
   bluetooth.enable = lib.mkDefault true;
   # nix tool with pretty output
   nh.enable = lib.mkDefault true;
-  # basic nix settings changes
-  nix-settings.enable = lib.mkDefault true;
   # btrfs filesystem scrubbing
   btrfs-scrub.enable = lib.mkDefault true;
   # use latest kernel
