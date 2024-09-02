@@ -449,6 +449,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1725276947,
+        "narHash": "sha256-p4xbvn1LnwYY1d+rXsMZZEYdC3R6UCAeNm/760MEDhw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "3007f981ee958d8e7607a7c5a2de09e634cafc4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1725001927,
@@ -483,16 +499,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1725270189,
-        "narHash": "sha256-czWe/ldomeJqX8SgdLPhpGu71ST+g4tJRjGNWMCIPGg=",
+        "lastModified": 1725103162,
+        "narHash": "sha256-Ym04C5+qovuQDYL/rKWSR+WESseQBbNAe5DsXNx5trY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e4a2b7892d0614864f49a2ad5f832eda82f7c471",
+        "rev": "12228ff1752d7b7624a54e9c1af4b222b3c1073b",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "master",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -558,6 +574,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "sops-nix": "sops-nix"

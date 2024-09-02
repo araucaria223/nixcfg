@@ -2,8 +2,9 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # alternative nix language implementation
     lix = {
