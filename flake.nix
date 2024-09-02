@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    #nixpkgs-for-hyprland.url = "github:fufexan/nixpkgs/xdph";
 
     # alternative nix language implementation
     lix = {
@@ -52,12 +51,12 @@
     #   inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     # };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     #hyprland.inputs.nixpkgs.follows = "nixpkgs-for-hyprland";
-    hyprland-plugins = {
-      url = "git+https://github.com/hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "git+https://github.com/hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     # extensible widgets
     ags = {
