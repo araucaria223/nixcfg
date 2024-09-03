@@ -7,47 +7,27 @@
 }: let
   cfg = config.wifi;
 
-  getFileName = lib.stringAsChars (x:
-    if x == " "
-    then "-"
-    else x);
-
-  createSops = ssid: {
-    secrets."${ssid}-psk" = {};
-    templates."${getFileName ssid}.nmconnection".content = ''
-      [connection]
-      id=${ssid}
-      type=wifi
-
-      [wifi]
-      ssid=${ssid}
-
-      [wifi-security]
-      key-mgmt=wpa-psk
-      psk=${config.sops.placeholder."${ssid}-psk"}
-    '';
-  };
-
-  createWifi = ssid: {
-    name = "NetworkManager/system-connections/${getFileName ssid}.nmconnection";
-    value = {
-      mode = "0400";
-      source = config.sops.templates."${getFileName ssid}".path;
-    };
-  };
-
-  createNMConfig = ssid: ''
+  createNMConfig = network: ''
     [connection]
-    id=${ssid}
+    id=${config.sops.placeholder."wireless/${network}/ssid"}
     type=wifi
 
     [wifi]
-    ssid=${ssid}
+    ssid=${config.sops.placeholder."wireless/${network}/ssid"}
 
     [wifi-security]
     key-mgmt=wpa-psk
-    psk=${config.sops.placeholder."${getFileName ssid}-psk"}
+    psk=${config.sops.placeholder."wireless/${network}/psk"}
   '';
+
+  # add more networks here
+  # networks must have an ssid and psk defined in $FLAKEDIR/secrets/secrets.yaml
+  networks = [
+    "home1"
+    "home2"
+  ];
+
+  forAllNetworks = f: lib.mkMerge (builtins.map f networks);
 in {
   options.wifi = {
     enable = lib.mkEnableOption ''
@@ -58,19 +38,28 @@ in {
   config = lib.mkIf cfg.enable {
     networking.networkmanager.enable = true;
     users.users.${settings.username}.extraGroups = ["networkmanager"];
+    environment.persistence."/persist/system".directories = ["/etc/NetworkManager/system-connections"];
 
     sops = {
-      secrets.jet-wireless-psk = {};
-      templates."jet-wireless.nmconnection".content = createNMConfig "jet wireless";
+      secrets = forAllNetworks (network: {
+        "wireless/${network}/ssid" = {};
+        "wireless/${network}/psk" = {};
+      });
+
+      templates = forAllNetworks (network: {
+        "${network}.nmconnection".content = createNMConfig network;
+      });
     };
 
-    environment.etc."NetworkManager/system-connections/jet-wireless.nmconnection" = {
-      mode = "0400";
-      source = config.sops.templates."jet-wireless.nmconnection".path;
-    };
+    environment.etc = forAllNetworks (network: {
+      "NetworkManager/system-connections/${network}.nmconnection" = {
+        mode = "0400";
+        source = config.sops.templates."${network}.nmconnection".path;
+      };
+    });
 
     systemd.services.NetworkManager-predefined-connections = {
-      restartTriggers = [ "/etc/NetworkManager/system-connections/jet-wireless.nmconnection" ];
+      restartTriggers = lib.lists.forEach networks (network: "/etc/NetworkManager/system-connections/${network}.nmconnection");
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;

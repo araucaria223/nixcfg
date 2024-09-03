@@ -25,10 +25,6 @@ in {
       };
     };
 
-    environment.persistence."/persist/system".directories = [
-      "/var/lib/sops-nix"
-    ];
-
     environment.systemPackages = [pkgs.sops];
   };
 }

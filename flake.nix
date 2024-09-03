@@ -114,7 +114,7 @@
             (import ./hosts/amstrad/disko.nix {device = "/dev/sda";})
 
             ./hosts/amstrad/configuration.nix
-	    ./modules/nixos
+            ./modules/nixos
 
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
@@ -122,12 +122,21 @@
             inputs.sops-nix.nixosModules.sops
           ];
         };
+
       lookfar =
         nixpkgs.lib.nixosSystem
         {
           specialArgs = {
             inherit inputs outputs;
-            settings = import ./hosts/lookfar/settings.nix;
+
+	    settings = {
+	      hostname = "lookfar";
+	      username = "araucaria";
+	      name = "Max Allfrey";
+	      email = "max.allfrey@gmail.com";
+	      wallpaper = ./assets/wallpapers/jm-pique-NlaaOucny2I-unsplash.jpg;
+	      colorScheme = "rose-pine";
+	    };
           };
 
           modules = [
@@ -135,14 +144,42 @@
             (import ./hosts/lookfar/disko.nix {device = "/dev/nvme0n1";})
 
             ./hosts/lookfar/configuration.nix
-	    ./modules/nixos
+            ./modules/nixos
 
-	    inputs.lix.nixosModules.default
+            inputs.lix.nixosModules.default
             inputs.home-manager.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
             inputs.sops-nix.nixosModules.sops
             inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
           ];
+        };
+
+      iso-image =
+        nixpkgs.lib.nixosSystem
+        {
+          specialArgs = {
+            inherit inputs outputs;
+
+	    settings = {
+	      hostname = "iso-image";
+	      username = "nixos";
+	      name = "NixOS";
+	      email = "NixOS";
+	      wallpaper = ./assets/wallpapers/jm-pique-NlaaOucny2I-unsplash.jpg;
+	      colorScheme = "rose-pine";
+	    };
+          };
+
+	  modules = [
+	    ./hosts/iso-image/configuration.nix
+	    ./modules/nixos
+
+	    inputs.disko.nixosModules.default
+	    inputs.lix.nixosModules.default
+	    inputs.home-manager.nixosModules.default
+	    inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence
+	  ];
         };
     };
   };

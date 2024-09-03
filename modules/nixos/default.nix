@@ -46,10 +46,14 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
     # enable automatic garbage collection of generations older than 7 days
-    gc = {
+    gc = lib.mkIf (!config.nh.enable) {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 7d";
     };
   };
+
+  # firmware updates
+  services.fwupd.enable = true;
+  hardware.enableAllFirmware = true;
 }

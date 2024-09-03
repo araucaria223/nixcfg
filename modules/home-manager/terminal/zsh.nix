@@ -42,7 +42,7 @@ in {
         cat = "${bat} --theme=base16";
         f = "${fastfetch} --load-config examples/9.jsonc";
 
-        reb = "builtin command sudo ${nixos-rebuild} switch --flake ~/nixos#${settings.hostname}";
+        reb = "builtin command sudo ${nixos-rebuild} switch --flake ~/nixos#${settings.hostname} --option eval-cache false";
         up = "${flakeUp} && ${git} add flake.nix flake.lock && ${git} commit -m 'Flake update' && ${reb}";
       };
     };

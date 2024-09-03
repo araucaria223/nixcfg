@@ -18,12 +18,6 @@
 
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  # firmware updates
-  services.fwupd.enable = true;
-
-  hardware.enableRedistributableFirmware = true;
-  #hardware.cpu.intel.updateMicrocode = true;
-
   colorScheme = inputs.nix-colors.colorSchemes.${settings.colorScheme};
 
   services.openssh.enable = true;
